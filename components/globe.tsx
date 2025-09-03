@@ -28,11 +28,6 @@ function Earth({ lat, lng }: { lat: number; lng: number }) {
   const earthRef = useRef<THREE.Mesh>(null!);
   const cloudsRef = useRef<THREE.Mesh>(null!);
 
-  //   useFrame(() => {
-  //     if (earthRef.current) earthRef.current.rotation.y += 0.001;
-  //     if (cloudsRef.current) cloudsRef.current.rotation.y += 0.0015;
-  //   });
-
   return (
     <>
       {/* Earth Sphere */}

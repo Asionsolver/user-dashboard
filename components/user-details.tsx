@@ -162,7 +162,7 @@ export default function UserDetails({ user }: UserDetailsProps) {
                     <p className="font-medium">{user.address.zipcode}</p>
                   </div>
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 flex! items-center justify-center w-full">
                   <Globe3D
                     lat={parseFloat(user.address.geo.lat)}
                     lng={parseFloat(user.address.geo.lng)}

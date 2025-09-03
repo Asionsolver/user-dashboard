@@ -143,7 +143,7 @@ export default function UserList() {
                 {currentUsers.map((user, index) => (
                   <motion.tr
                     key={user.id}
-                    className="border-b border-border hover:bg-primary transition-all duration-200 cursor-pointer group"
+                    className="border-b border-border transition-all duration-200 cursor-pointer group"
                     onClick={() => handleRowClick(user.id)}
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
