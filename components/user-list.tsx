@@ -50,14 +50,20 @@ export default function UserList() {
   const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
   useEffect(() => {
-    const filtered = users.filter(
-      (user) =>
-        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.username.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredUsers(filtered);
-    setCurrentPage(1); // Reset to first page when filtering
+    const handler = setTimeout(() => {
+      const filtered = users.filter(
+        (user) =>
+          user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          user.username.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredUsers(filtered);
+      setCurrentPage(1);
+    }, 400); // 400ms debounce delay
+
+    return () => {
+      clearTimeout(handler);
+    };
   }, [searchTerm, users]);
 
   const handlePreviousPage = () => {
@@ -98,36 +104,36 @@ export default function UserList() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
       >
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-chart-5 h-4 w-4" />
         <input
           type="text"
           placeholder="Search users by name, email, or username..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full pl-10 pr-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
         />
       </motion.div>
 
       <motion.div
-        className="border border-gray-200 rounded-lg overflow-hidden"
+        className="border border-border rounded-lg overflow-hidden"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
       >
         <div>
           <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-muted-foreground/5 border-b border-border">
               <tr>
-                <th className="text-left p-4 font-medium text-gray-600">
+                <th className="text-left p-4 font-medium text-muted-foreground">
                   Name
                 </th>
-                <th className="text-left p-4 font-medium text-gray-600 hidden md:table-cell">
+                <th className="text-left p-4 font-medium text-muted-foreground hidden md:table-cell">
                   Email
                 </th>
-                <th className="text-left p-4 font-medium text-gray-600 hidden lg:table-cell">
+                <th className="text-left p-4 font-medium text-muted-foreground hidden lg:table-cell">
                   Phone
                 </th>
-                <th className="text-left p-4 font-medium text-gray-600 hidden lg:table-cell">
+                <th className="text-left p-4 font-medium text-muted-foreground hidden lg:table-cell">
                   Company
                 </th>
               </tr>
@@ -137,7 +143,7 @@ export default function UserList() {
                 {currentUsers.map((user, index) => (
                   <motion.tr
                     key={user.id}
-                    className="border-b border-gray-100 hover:bg-blue-50 transition-all duration-200 cursor-pointer group"
+                    className="border-b border-border hover:bg-primary transition-all duration-200 cursor-pointer group"
                     onClick={() => handleRowClick(user.id)}
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -147,25 +153,25 @@ export default function UserList() {
                       delay: index * 0.05,
                     }}
                     whileHover={{
-                      backgroundColor: "rgba(59, 130, 246, 0.05)",
+                      backgroundColor: "rgb(247,248,248)",
                       transition: { duration: 0.2 },
                     }}
                     whileTap={{ scale: 0.99 }}
                   >
                     <td className="p-4">
                       <div>
-                        <div className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
+                        <div className="font-medium text-foreground group-hover:text-primary transition-colors">
                           {user.name}
                         </div>
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm text-chart-5">
                           @{user.username}
                         </div>
                         <div className="md:hidden mt-2 space-y-1">
-                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <div className="flex items-center gap-2 text-xs text-chart-5">
                             <Mail className="h-3 w-3" />
                             <span>{user.email}</span>
                           </div>
-                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <div className="flex items-center gap-2 text-xs text-chart-5">
                             <Phone className="h-3 w-3" />
                             <span>{user.phone}</span>
                           </div>
@@ -215,7 +221,7 @@ export default function UserList() {
               <motion.button
                 onClick={handlePreviousPage}
                 disabled={currentPage === 1}
-                className="flex items-center gap-1 px-3 py-1.5 text-sm border border-gray-300 rounded-md hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex items-center gap-1 px-3 py-2 text-sm border border-border rounded-md hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 whileHover={{ scale: currentPage === 1 ? 1 : 1.05 }}
                 whileTap={{ scale: currentPage === 1 ? 1 : 0.95 }}
               >
@@ -231,8 +237,8 @@ export default function UserList() {
                       onClick={() => handlePageClick(pageNumber)}
                       className={`w-10 h-10 text-sm rounded-md transition-colors ${
                         currentPage === pageNumber
-                          ? "bg-blue-600 text-white"
-                          : "border border-gray-300 hover:bg-gray-50"
+                          ? "bg-primary text-white"
+                          : "border border-border hover:bg-gray-50"
                       }`}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
@@ -246,7 +252,7 @@ export default function UserList() {
               <motion.button
                 onClick={handleNextPage}
                 disabled={currentPage === totalPages}
-                className="flex items-center gap-1 px-3 py-1.5 text-sm border border-gray-300 rounded-md hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex items-center gap-1 px-3 py-2 text-sm border border-border rounded-md hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 whileHover={{ scale: currentPage === totalPages ? 1 : 1.05 }}
                 whileTap={{ scale: currentPage === totalPages ? 1 : 0.95 }}
               >
@@ -269,15 +275,17 @@ export default function UserList() {
         </>
       )}
 
+      {/* Empty State */}
       {filteredUsers.length === 0 && searchTerm && (
         <motion.div
-          className="text-center py-8"
+          className="text-center py-12 bg-muted/30 rounded-xl"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-gray-600">
-            No users found matching &quot;{searchTerm}&quot;
+          <p className="text-gray-500 text-lg font-medium">
+            No users found matching{" "}
+            <span className="text-primary">&quot;{searchTerm}&quot;</span>
           </p>
         </motion.div>
       )}

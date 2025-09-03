@@ -31,9 +31,6 @@ const TableLoader = () => {
                 <th className="text-left p-4 hidden lg:table-cell">
                   <div className="h-4 w-16 bg-gray-200 rounded animate-pulse" />
                 </th>
-                <th className="text-center p-4">
-                  <div className="h-4 w-16 bg-gray-200 rounded animate-pulse mx-auto" />
-                </th>
               </tr>
             </thead>
             <tbody>
@@ -77,12 +74,6 @@ const TableLoader = () => {
                     <div className="flex items-center gap-2">
                       <div className="h-4 w-4 bg-gray-200 rounded animate-pulse" />
                       <div className="h-4 w-32 bg-gray-200 rounded animate-pulse" />
-                    </div>
-                  </td>
-                  <td className="p-4 text-center">
-                    <div className="inline-flex items-center px-3 py-1.5 border border-gray-200 rounded-md">
-                      <div className="h-4 w-4 bg-gray-200 rounded animate-pulse mr-2" />
-                      <div className="h-4 w-8 bg-gray-200 rounded animate-pulse hidden sm:block" />
                     </div>
                   </td>
                 </motion.tr>

@@ -34,14 +34,6 @@ export default function HomePage() {
           >
             User Management
           </motion.h1>
-          <motion.p
-            className="text-muted-foreground text-lg"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            Browse and manage users from JSONPlaceholder API
-          </motion.p>
         </motion.div>
 
         <motion.div
@@ -49,7 +41,7 @@ export default function HomePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Card>
+          <Card className="bg-card border border-border shadow-sm">
             <CardHeader>
               <CardTitle>Users Directory</CardTitle>
               <CardDescription>

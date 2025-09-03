@@ -30,14 +30,17 @@ export default function UserDetails({ user }: UserDetailsProps) {
         >
           <motion.div whileHover={{ x: -5 }} whileTap={{ scale: 0.95 }}>
             <Link href="/">
-              <Button variant="outline" className="mb-4 bg-transparent">
+              <Button
+                variant="outline"
+                className="mb-4 bg-transparent border border-border hover:bg-gray-50 transition-colors"
+              >
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Users
               </Button>
             </Link>
           </motion.div>
           <motion.div
-            className="flex items-center gap-4"
+            className="flex items-center gap-4 "
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -89,7 +92,7 @@ export default function UserDetails({ user }: UserDetailsProps) {
             transition={{ duration: 0.5, delay: 0.4 }}
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
           >
-            <Card>
+            <Card className="border border-border">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Mail className="h-5 w-5" />
@@ -153,7 +156,7 @@ export default function UserDetails({ user }: UserDetailsProps) {
             transition={{ duration: 0.5, delay: 0.5 }}
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
           >
-            <Card>
+            <Card className="border border-border">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <MapPin className="h-5 w-5" />
@@ -217,7 +220,7 @@ export default function UserDetails({ user }: UserDetailsProps) {
             transition={{ duration: 0.5, delay: 0.6 }}
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
           >
-            <Card>
+            <Card className="border border-border">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Building className="h-5 w-5" />
@@ -273,7 +276,7 @@ export default function UserDetails({ user }: UserDetailsProps) {
             </Button>
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button variant="outline" asChild>
+            <Button variant="outline" asChild className="border border-border">
               <a href={`tel:${user.phone}`}>
                 <Phone className="h-4 w-4 mr-2" />
                 Call
@@ -281,7 +284,7 @@ export default function UserDetails({ user }: UserDetailsProps) {
             </Button>
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button variant="outline" asChild>
+            <Button variant="outline" asChild className="border border-border">
               <a
                 href={`https://${user.website}`}
                 target="_blank"
