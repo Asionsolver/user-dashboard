@@ -116,7 +116,9 @@ export default function UserDetails({ user }: UserDetailsProps) {
                     <p className="text-sm text-muted-foreground">
                       Catch Phrase
                     </p>
-                    <p className="italic">"{user.company.catchPhrase}"</p>
+                    <p className="italic">
+                      &quot;{user.company.catchPhrase}&quot;
+                    </p>
                   </div>
                   <Separator />
                   <div>

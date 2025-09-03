@@ -9,7 +9,6 @@ import {
   Phone,
   ChevronLeft,
   ChevronRight,
-  Eye,
   Building2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";

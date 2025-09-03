@@ -19,7 +19,8 @@ export default function NotFound() {
           <CardHeader>
             <CardTitle className="text-2xl">User Not Found</CardTitle>
             <CardDescription>
-              The user you're looking for doesn't exist or has been removed.
+              The user you&apos;re looking for doesn&apos;t exist or has been
+              removed.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">

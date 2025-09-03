@@ -1,6 +1,6 @@
 "use client";
 
-import { Canvas, useFrame, useLoader } from "@react-three/fiber";
+import { Canvas, useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef, useEffect } from "react";
@@ -62,6 +62,7 @@ function Earth({ lat, lng }: { lat: number; lng: number }) {
 }
 
 export default function Globe3D({ lat, lng }: { lat: number; lng: number }) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const controlsRef = useRef<any>(null);
   useEffect(() => {
     if (!controlsRef.current) return;
