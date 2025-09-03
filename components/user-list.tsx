@@ -208,12 +208,12 @@ export default function UserList() {
       {totalPages > 1 && (
         <>
           <motion.div
-            className="flex justify-between items-center text-sm text-gray-600"
+            className="flex justify-center md:justify-between items-center text-sm text-gray-600"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.3 }}
           >
-            <span>
+            <span className=" hidden md:inline-flex">
               Showing {indexOfFirstUser + 1}-
               {Math.min(indexOfLastUser, filteredUsers.length)} of{" "}
               {filteredUsers.length} users
@@ -236,7 +236,7 @@ export default function UserList() {
                     <motion.button
                       key={pageNumber}
                       onClick={() => handlePageClick(pageNumber)}
-                      className={`w-10 h-10 text-sm rounded-md transition-colors ${
+                      className={`w-10 h-10 text-sm  rounded-md transition-colors ${
                         currentPage === pageNumber
                           ? "bg-primary text-white"
                           : "border border-border hover:bg-gray-50"
@@ -258,11 +258,11 @@ export default function UserList() {
                 whileTap={{ scale: currentPage === totalPages ? 1 : 0.95 }}
               >
                 Next
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="h-4 w-4 " />
               </motion.button>
             </div>
             {totalPages > 1 && (
-              <span>
+              <span className="hidden md:inline-flex">
                 Page {currentPage} of {totalPages}
               </span>
             )}
