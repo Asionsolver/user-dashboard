@@ -16,6 +16,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import TableLoader from "./loader/table-loder";
 import UserError from "./error/user-error";
+import EmptyState from "./empty-state";
 
 export default function UserList() {
   const [users, setUsers] = useState<User[]>([]);
@@ -275,19 +276,8 @@ export default function UserList() {
         </>
       )}
 
-      {/* Empty State */}
       {filteredUsers.length === 0 && searchTerm && (
-        <motion.div
-          className="text-center py-12 bg-muted/30 rounded-xl"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="text-gray-500 text-lg font-medium">
-            No users found matching{" "}
-            <span className="text-primary">&quot;{searchTerm}&quot;</span>
-          </p>
-        </motion.div>
+        <EmptyState searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       )}
     </motion.div>
   );
