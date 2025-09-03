@@ -8,6 +8,8 @@ import Link from "next/link";
 import type { User } from "@/lib/types";
 import { motion } from "framer-motion";
 import Globe3D from "./globe";
+import CopyButton from "./copy-button";
+import { Badge } from "./ui/badge";
 
 interface UserDetailsProps {
   user: User;
@@ -53,7 +55,7 @@ export default function UserDetails({ user }: UserDetailsProps) {
         {/* Main Grid */}
         <div className="grid gap-6 mt-8 lg:grid-cols-2 ">
           {/* LEFT COLUMN */}
-          <div className="flex flex-col min-w-md md:w-full">
+          <div className="flex flex-col min-w-[250px] md:w-full">
             {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -68,14 +70,20 @@ export default function UserDetails({ user }: UserDetailsProps) {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4 flex-1">
-                  <div>
-                    <p className="text-sm text-muted-foreground">Email</p>
-                    <p className="font-medium">{user.email}</p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-muted-foreground">Email</p>
+                      <p className="font-medium">{user.email}</p>
+                    </div>
+                    <CopyButton value={user.email} />
                   </div>
                   <Separator />
-                  <div>
-                    <p className="text-sm text-muted-foreground">Phone</p>
-                    <p className="font-medium">{user.phone}</p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-muted-foreground">Phone</p>
+                      <p className="font-medium">{user.phone}</p>
+                    </div>
+                    <CopyButton value={user.phone} />
                   </div>
                   <Separator />
                   <div>
@@ -135,7 +143,7 @@ export default function UserDetails({ user }: UserDetailsProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="h-full mt-4.5 lg:mt-0 min-w-md md:w-full"
+            className="h-full mt-4.5 lg:mt-0 min-w-[250px] md:w-full"
           >
             <Card className="border border-border flex flex-col h-full ">
               <CardHeader>
@@ -162,6 +170,7 @@ export default function UserDetails({ user }: UserDetailsProps) {
                     <p className="font-medium">{user.address.zipcode}</p>
                   </div>
                 </div>
+
                 <div className="mt-4 flex! items-center justify-center w-full">
                   <Globe3D
                     lat={parseFloat(user.address.geo.lat)}
